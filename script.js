@@ -11,7 +11,7 @@ let timerInterval;
 
 
 
-//let create function that randomize my array of cards
+//let create function that randomize my array of cards this way we can change the postion of the cards each time revealed.
 const shuffle = ((array: element[]) => {   
     for (let i = array.length - 1; i > 0; i--) { //starting from last element working down it garantee
         //the last element in our array have a chance of being swapped with any other element in our array
@@ -22,12 +22,16 @@ const shuffle = ((array: element[]) => {
     } 
   }); 
 
+
+
+//function that count the time by second ===============
   function startTimer() {
-    let sec = 0;
-    timerInterval = setInterval(() => {
-        sec++ ;
-        cardTimer.textContent = seconds ;
-    }, 2000);
+    let sec = 0; //we starting from second zero
+    timerInterval = setInterval(() => { //setInterval is built Javascript function that count 
+        // repeadtly the specified function by fixed time on milliscond 
+        sec++ ; // the incrementation of the seconds 
+        cardTimer.textContent = seconds ; // this display the time in our screen.
+    }, 1000); //setInterval will be excuted each 1000 miliisecond and is one second.
 }
 
 
