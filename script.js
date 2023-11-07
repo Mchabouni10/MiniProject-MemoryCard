@@ -47,32 +47,51 @@ const shuffleAndCreateGrid = (MyCards) => {
   for (let i = 0; i < MyCards.length; i++) {
     // create a loop that iretrate all the lengrh of my array
     const card = document.createElement("div"); // creat a div for each element in my array
+    const backCard = document.createElement('div') 
+
     card.classList.add("card"); // add a class name card for each card created
+    backCard.classList.add('backCard')
     card.dataset.MyCards = MyCards[i]; //using dataset to import my card to my grid
 
     const img = document.createElement("img"); //create a variable img to add my images to card
     img.src = MyCards[i]; //store each image inside my Array that I called Mycards
     card.appendChild(img); //display my Image isnide the div
+    card.appendChild(backCard)
 
     container.appendChild(card); // display all cards on my Grid or Screen
   }
 };
 
-// Call the function with your MyCards array
+//========= Call the function with your MyCards array
 shuffleAndCreateGrid(MyCards);
 
-//function that count the time by second ===============
+//=========function that count the time by second ===============
   function startGameTimer() {
-    let sec = 0; //we starting from second zero
+    let seconds = 0; //we starting from second zero
     timerInterval = setInterval(() => { //setInterval is built Javascript function that count
         // repeadtly the specified function by fixed time on milliscond
-        sec++ ; // the incrementation of the seconds
+        seconds++ ; // the incrementation of the seconds
         cardTimer.textContent = seconds ; // this display the time in our screen.
     }, 1000); //setInterval will be excuted each 1000 miliisecond and is one second.
 }
 
-// Function to reaveal 2 card chosen
-function reaveal2chosenCard(card) {
+
+
+//========= I need function to reset a cards hide front face
+function resetTheCards() {
+    const allCards = document.querySelectorAll('.card');
+    allCards.forEach((card) => {
+      card.classList.remove('turnOver');
+    });
+  }
+
+  
+  // Call the function to reset the cards when the game starts
+  resetTheCards();
+
+
+// =========Function to reaveal 2 card chosen============
+function reveal2chosenCard(card) {
   // function called reveal2chosenCards
   //it called when the player click on the card
   if (!startThegame) {
@@ -86,21 +105,23 @@ function reaveal2chosenCard(card) {
   }
 
   // return my My clicked car
+  const MyClickedCards = [];
   card.classList.add("turnOver");
-  MyCards.push(card);
+  MyClickedCards.push(card);
 
-  if (MyCards.length === 2) { //if there is just 2 cards selected
+  if (MyClickedCards.length === 2) { //if there is just 2 cards selected
     waitForMove = 2; // waitForMove is set 2 to for preventing to compare more than 2 cards 
 
     // Compare the two selected cards
-    if (MyCards[0].dataset.MyCards === MyCards[1].dataset.MyCards) {// statement to check or compare if both cards are matched 
+    if (MyClickedCards[0].dataset.MyCards === MyClickedCards[1].dataset.MyCards) {// statement to check or compare if both cards are matched 
       // Match found
       
       setTimeout(() => { //give the affect to show that two card as matched and have the same image
-        MyCards.forEach((card) => { //iterate inside my Array to add the class matched for turning over again
+        MyClickedCards.forEach((card) => { //iterate inside my Array to add the class matched for turning over again
           card.classList.add("matched");
+          cardGrid.removeChild(card); //I need to check this==============
         });
-        MyCards = []; //set my Array to empty again
+        MyClickedCards = []; //set my Array to empty again
         twoMatchedCards += 2; //increment that 2 more matched cards found 
         waitForMove = 0; //set to 0 to let the player click again two different cards
 
@@ -119,14 +140,28 @@ function reaveal2chosenCard(card) {
     } else { //else statament if the 2 cards doesn
       
       setTimeout(() => { //use function setTimeout to two turnedOver cards
-        MyCards.forEach((card) => { //iterate my Array 
+        MyClickedCards.forEach((card) => { //iterate my Array 
           card.classList.remove("turnOver"); //once turnover change the classlist to be checked again
         });
-        MyCards = []; // set My array to zero to get empty again to choose another cards 
+        MyClickedCards = []; // set My array to zero to get empty again to choose another cards 
         waitForMove = 0; //set move to zero to let the player can have 2 clicks again
       }, 1000);
     }
   }
 }
   //set up my clicks on cards using add event Listner
+  const allCards = document.querySelectorAll('.card')
+  allCards.forEach((card) => {
+
+    card.addEventListener('click', () => {
+      if (!card.classList.contains('turnOver') && waitForMove < 2) {
+        card.classList.add('turnOver');
+        reveal2chosenCard(card);
+      }
+    });
+  });
+
+
+
+
   
