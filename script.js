@@ -61,15 +61,15 @@ const shuffleAndCreateGrid = (MyCards) => {
 // Call the function with your MyCards array
 shuffleAndCreateGrid(MyCards);
 
-// //function that count the time by second ===============
-//   function startGameTimer() {
-//     let sec = 0; //we starting from second zero
-//     timerInterval = setInterval(() => { //setInterval is built Javascript function that count
-//         // repeadtly the specified function by fixed time on milliscond
-//         sec++ ; // the incrementation of the seconds
-//         cardTimer.textContent = seconds ; // this display the time in our screen.
-//     }, 1000); //setInterval will be excuted each 1000 miliisecond and is one second.
-// }
+//function that count the time by second ===============
+  function startGameTimer() {
+    let sec = 0; //we starting from second zero
+    timerInterval = setInterval(() => { //setInterval is built Javascript function that count
+        // repeadtly the specified function by fixed time on milliscond
+        sec++ ; // the incrementation of the seconds
+        cardTimer.textContent = seconds ; // this display the time in our screen.
+    }, 1000); //setInterval will be excuted each 1000 miliisecond and is one second.
+}
 
 // Function to reaveal 2 card chosen
 function reaveal2chosenCard(card) {
@@ -104,18 +104,27 @@ function reaveal2chosenCard(card) {
         twoMatchedCards += 2; //increment that 2 more matched cards found 
         waitForMove = 0; //set to 0 to let the player click again two different cards
 
-        if (twoMatchedCards === cardNumbers) { //check if the player one means our 
-          clearInterval(timerInterval);
-          setTimeout(
+        if (twoMatchedCards === cardNumbers) { //check if the player one won means our twoMatchedCard is 16 
+            //and is the same number of cards
+          clearInterval(timerInterval);// stop the time when the player and start when restard the game again
+          setTimeout( //checked Internet and read some exemple in overflow to set it working 
             () =>
               alert(
-                "Congratulations! You won! Your time: " + cardTimer.textContent
+                "Congratulations! You won! Your time: " + cardTimer.textContent //just show in screen that game is won 
               ),
-            500
+            500 //set it for a half second mean 500 milisecond
           );
         }
       }, 500);
-    } else {
-      // No match, hide the cards
+    } else { //else statament if the 2 cards doesn
       
-  
+      setTimeout(() => { //use function setTimeout to turn over 
+        MyCards.forEach((card) => {
+          card.classList.remove("turnOver");
+        });
+        MyCards = [];
+        waitForMove = 0;
+      }, 1000);
+    }
+  }
+}
