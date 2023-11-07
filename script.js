@@ -96,15 +96,26 @@ function reaveal2chosenCard(card) {
     if (MyCards[0].dataset.MyCards === MyCards[1].dataset.MyCards) {// statement to check or compare if both cards are matched 
       // Match found
       
-      setTimeout(() => { //use s
-        MyCards.forEach((card) => {
+      setTimeout(() => { //give the affect to show that two card as matched and have the same image
+        MyCards.forEach((card) => { //iterate inside my Array to add the class matched for turning over again
           card.classList.add("matched");
         });
-        MyCards = [];
-        twoMatchedCards += 2;
-        waitForMove = 0;
+        MyCards = []; //set my Array to empty again
+        twoMatchedCards += 2; //increment that 2 more matched cards found 
+        waitForMove = 0; //set to 0 to let the player click again two different cards
 
- 
-    }
-  }
-}
+        if (twoMatchedCards === cardNumbers) { //check if the player one means our 
+          clearInterval(timerInterval);
+          setTimeout(
+            () =>
+              alert(
+                "Congratulations! You won! Your time: " + cardTimer.textContent
+              ),
+            500
+          );
+        }
+      }, 500);
+    } else {
+      // No match, hide the cards
+      
+  
