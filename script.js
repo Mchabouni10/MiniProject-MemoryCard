@@ -118,13 +118,15 @@ function reaveal2chosenCard(card) {
       }, 500);
     } else { //else statament if the 2 cards doesn
       
-      setTimeout(() => { //use function setTimeout to turn over 
-        MyCards.forEach((card) => {
-          card.classList.remove("turnOver");
+      setTimeout(() => { //use function setTimeout to two turnedOver cards
+        MyCards.forEach((card) => { //iterate my Array 
+          card.classList.remove("turnOver"); //once turnover change the classlist to be checked again
         });
-        MyCards = [];
-        waitForMove = 0;
+        MyCards = []; // set My array to zero to get empty again to choose another cards 
+        waitForMove = 0; //set move to zero to let the player can have 2 clicks again
       }, 1000);
     }
   }
 }
+  //set up my clicks on cards using add event Listner
+  
