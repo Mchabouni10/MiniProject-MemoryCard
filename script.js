@@ -46,13 +46,17 @@ console.log(MyCards);
 
   // Create my card on the grid using DOM like we learn it in class
   // By using createElement and add a call to it by usin classList.add
+  const container = document.querySelector('.myScreen');
   for (let i=0; i < MyCards.length; i++){ // create a loop that iretrate all the lengrh of my array
     const card = document.createElement('div')// creat a div for each element in my array
     card.classList.add('card')// add a class name card for each card created 
+    // card.setAttribute('class','card')
+
     card.dataset.MyCards = MyCards[i] //using dataset to import my card to my grid
-    console.log(MyCards)
-    card.innerText = "cards"
-    
+    const img = document.createElement('img');
+    img.src = MyCards[i];
+    card.appendChild(img);
+    container.appendChild(card);
   }
 
 // //function that count the time by second ===============
