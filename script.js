@@ -29,14 +29,17 @@ let startThegame = false; //set the start game to false
 let timerInterval; // using for counting the time in second
 let score = 0; // start the game from second zero
 let errorCount = 0; // a variable for the number of errors
+let seconds = 0; //
 const players = {
     1: {
       score: 0,
       errors: 0,
+      time : 0,
     },
     2: {
       score: 0,
       errors: 0,
+      time : 0,
     },
   };
 let currentPlayer = 1; //set the player 1
@@ -115,7 +118,7 @@ function hideCards() {
 // ================= Function to start the game timer =================
 function startGameTimer() {
   //function to called startgameTimer to count the second from the start of the game through the end
-  let seconds = 0; //set up second to zero to start from second zero
+   //set up second to zero to start from second zero
   timerInterval = setInterval(() => {
     //using w3 school to understand the pupose of this function
     seconds++; //increment the seconds by 1 second using setInterval
@@ -260,10 +263,15 @@ const player2Button = document.getElementById('player2Button')
 
 player1Button.addEventListener('click', () => {
     currentPlayer = 1 ; 
+ 
+    players[2].time = seconds
+    seconds = players[1].time
     playerTurn();
 })
 player2Button.addEventListener('click',() => {
     currentPlayer = 2 ;
+    players[1].time = seconds
+    seconds = players[2].time
     playerTurn();
 })
 //===== function  update each player Game Data ============
@@ -271,7 +279,7 @@ function updateGameData() {
     const currentPlayerData = players[currentPlayer];
     currentPlayerData.score = score;
     currentPlayerData.errors = errorCount;
-    currentPlayerData.time = parseInt(cardTimer.textContent);
+    currentPlayerData.time = parseInt(cardTimer.textContent); //I have it from Internet 
   }
 
 //============= function to switch players ===========
@@ -280,7 +288,7 @@ function switchPlayer() {
     updateGameData();
   
     // Switch to the other player (1 -> 2 or 2 -> 1)
-    currentPlayer = currentPlayer === 1 ? 2 : 1;
+    currentPlayer = currentPlayer === 1 ? 2 : 1; // I just find it overflow and took the idea 
     playerTurn();
   
     // Update the display with the new player's data
