@@ -131,15 +131,15 @@ function resetGame() { //reset all the game
 }
 
 // ==================== Function to reveal two chosen cards and handle the game logic ========
-function reveal2chosenCard(card) {
-  if (waitForMove === 0) {
-    selectedCards.push(card);
+function reveal2chosenCard(card) { //the longest logic to work on it. the name of the function
+  if (waitForMove === 0) { // statement if there is no move or 2 clicks 
+    selectedCards.push(card); // mean we can click and we push them to the empty array we created 
 
-    if (selectedCards.length === 2) {
-      waitForMove = 2;
+    if (selectedCards.length === 2) { //if my array  have already 2 cards inside 
+      waitForMove = 2; // set the move to two fro not making any click 
 
-      const firstCard = selectedCards[0];
-      const secondCard = selectedCards[1];
+      const firstCard = selectedCards[0]; // set the first card revealed with index 0
+      const secondCard = selectedCards[1]; // set the second card revealed with index 1
 
       if (firstCard.dataset.index === secondCard.dataset.index) {
         selectedCards.pop();
@@ -148,8 +148,7 @@ function reveal2chosenCard(card) {
       }
 
       if (
-        firstCard.querySelector("img").src ===
-        secondCard.querySelector("img").src
+        firstCard.querySelector("img").src ===secondCard.querySelector("img").src
       ) {
         firstCard.classList.add("matched");
         secondCard.classList.add("matched");
