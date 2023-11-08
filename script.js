@@ -104,30 +104,30 @@ function startGameTimer() { //function to called startgameTimer to count the sec
   }, 1000); // using 1000 millisecond or 1 second as counting unit 
 }
 
-// ============ Function to reset the cards to their initial state (face down) =============
-function resetTheCards() { // function that reset the card when I load or when I restart the game
-  const allCards1 = document.querySelectorAll(".card"); //create a const that iretarate my array 
-  allCards1.forEach((card) => { //itterate all my array for each card using there id 
-    card.classList.remove("turnOver", "matched"); //using ClassList remove to remove the turned and matched cards
-  });
-}
+// // ============ Function to reset the cards to their initial state (face down) =============
+// function resetTheCards() { // function that reset the card when I load or when I restart the game
+//   const allCards1 = document.querySelectorAll(".card"); //create a const that iretarate my array 
+//   allCards1.forEach((card) => { //itterate all my array for each card using there id 
+//     card.classList.remove("turnOver", "matched"); //using ClassList remove to remove the turned and matched cards
+//   });
+// }
 
 // ========== Function to reset the entire game ==========
 function resetGame() { //reset all the game 
   clearInterval(timerInterval);
   cardGrid.innerHTML = ""; // Clear the grid
-  cardTimer.textContent = "0";
-  score = 0;
-  errorCount = 0
-  twoMatchedCards = 0;
-  startThegame = false;
-  selectedCards = [];
-  waitForMove = 0;
-  resetTheCards(); // Reset the cards
+  cardTimer.textContent = "0"; //set the timer on my screen to zero
+  score = 0; //set the score to zero
+  errorCount = 0 // set the error count to zero
+  twoMatchedCards = 0; // set the matched card to zero
+  startThegame = false; //set the start game to zero
+  selectedCards = []; // set the array that memorize matched and turned card to zero
+  waitForMove = 0; 
+//   resetTheCards(); // Reset the cards
   shuffleAndCreateGrid(MyCards); // Create a new shuffled grid
-  hideCards(); // Hide the cards
-  updateScoreDisplay();
-  updateErrorCount()
+  hideCards(); // invoke Hide the cards
+  updateScoreDisplay(); //invoke scre update
+  updateErrorCount() //invoke errors update to update all this 3 to zero
 }
 
 // ==================== Function to reveal two chosen cards and handle the game logic ========
