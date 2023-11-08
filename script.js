@@ -64,30 +64,30 @@ function shuffleAndCreateGrid(cards) { // function called shuffle and create my 
     const cardBack = document.createElement("div"); //create a back for the image is just a background
     cardBack.classList.add("card-back"); // add a class for the back of the card 
 
-    const img = document.createElement("img");
-    img.src = card;
-    cardFront.appendChild(img);
+    const img = document.createElement("img"); // creat an image using create Element to the src
+    img.src = card;  
+    cardFront.appendChild(img); // append the image to my screen 
 
-    cardElement.appendChild(cardFront);
-    cardElement.appendChild(cardBack);
+    cardElement.appendChild(cardFront); //append to screen the front face image
+    cardElement.appendChild(cardBack);  //append to screen the back card grey background
 
-    cardElement.addEventListener("click", () => {
-      if (!startThegame) {
-        startGameTimer();
-        startThegame = true;
+    cardElement.addEventListener("click", () => { // add an eventlistner click to the cards 
+      if (!startThegame) { //my logic start fro here statement if game not started yet
+        startGameTimer(); // call the to start the game time
+        startThegame = true; // change start the game to true from the first click
       }
 
-      if (waitForMove < 2 && !cardElement.classList.contains("matched")) {
-        cardElement.classList.toggle("turnOver");
-        reveal2chosenCard(cardElement);
+      if (waitForMove < 2 && !cardElement.classList.contains("matched")) { //if my move hasn't two click yet or already matched 
+        cardElement.classList.toggle("turnOver"); //using toggle to change the card to turnOver
+        reveal2chosenCard(cardElement); //call the function reveal 2 card with the logic I set up
       }
     });
 
-    cardGrid.appendChild(cardElement);
+    cardGrid.appendChild(cardElement); //append them to my screen 
   });
 }
 
-// Function to hide the cards (turn them face down)
+// =========Function to hide the cards (turn them face down)==============
 function hideCards() {
   const allCards = document.querySelectorAll(".card");
   allCards.forEach((card) => {
