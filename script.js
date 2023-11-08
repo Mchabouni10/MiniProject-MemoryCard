@@ -1,4 +1,4 @@
-const MyCards = [
+const MyCards = [ //my array to store the cards 
   "images/1.png",
   "images/2.png",
   "images/3.png",
