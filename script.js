@@ -150,10 +150,10 @@ function reveal2chosenCard(card) {
     if (selectedCards.length === 2) {
       //if my array  have already 2 cards inside
       waitForMove = 2; // set the move to two fro not making any click
-
+      playerTurn()
       const firstCard = selectedCards[0]; // set the first card revealed with index 0
       const secondCard = selectedCards[1]; // set the second card revealed with index 1
-      playerTurn()
+      
 
       if (firstCard.dataset.index === secondCard.dataset.index) {
         //statement if the first card index meet each other remove them from the list
@@ -231,15 +231,28 @@ function updateErrorCount() {
 
 // ========= function for player turn ================
 function playerTurn() {
-  const player1On = document.getElementById("player1");
-  const player2On = document.getElementById("player2");
-  if (player1On === 1) {
-    player1On.style.dispay = "none";
-    player2On.style.display = "block";
-    currentPlayer = 2;
-  } else {
-    player1On.style.dispay = "block";
-    player2On.style.display = "none";
-    currentPlayer = 1;
+    const player1On = document.getElementById("player1");
+    const player2On = document.getElementById("player2");
+  
+    if (currentPlayer === 1) {
+      player1On.style.display = "block";
+      player2On.style.display = "none";
+    } else {
+      player1On.style.display = "none";
+      player2On.style.display = "block";
+    }
   }
-}
+  
+
+//========= add buttons for player 1 and player 2 ===========
+const player1Button = document.getElementById('player1Button')
+const player2Button = document.getElementById('player2Button')
+
+player1Button.addEventListener('click', () => {
+    currentPlayer = 1 ; 
+    playerTurn();
+})
+player2Button.addEventListener('click',() => {
+    currentPlayer = 2 ;
+    playerTurn();
+})
