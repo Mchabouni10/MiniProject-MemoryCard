@@ -104,16 +104,16 @@ function startGameTimer() { //function to called startgameTimer to count the sec
   }, 1000); // using 1000 millisecond or 1 second as counting unit 
 }
 
-// Function to reset the cards to their initial state (face down)
-function resetTheCards() {
-  const allCards = document.querySelectorAll(".card");
-  allCards.forEach((card) => {
-    card.classList.remove("turnOver", "matched");
+// ============ Function to reset the cards to their initial state (face down) =============
+function resetTheCards() { // function that reset the card when I load or when I restart the game
+  const allCards1 = document.querySelectorAll(".card"); //create a const that iretarate my array 
+  allCards1.forEach((card) => { //itterate all my array for each card using there id 
+    card.classList.remove("turnOver", "matched"); //using ClassList remove to remove the turned and matched cards
   });
 }
 
-// Function to reset the entire game
-function resetGame() {
+// ========== Function to reset the entire game ==========
+function resetGame() { //reset all the game 
   clearInterval(timerInterval);
   cardGrid.innerHTML = ""; // Clear the grid
   cardTimer.textContent = "0";
@@ -130,7 +130,7 @@ function resetGame() {
   updateErrorCount()
 }
 
-// Function to reveal two chosen cards and handle the game logic
+// ==================== Function to reveal two chosen cards and handle the game logic ========
 function reveal2chosenCard(card) {
   if (waitForMove === 0) {
     selectedCards.push(card);
@@ -188,7 +188,7 @@ function reveal2chosenCard(card) {
 const restartButton = document.getElementById("restartButton");
 restartButton.addEventListener("click", resetGame);
 
-// Initial game setup
+// ====================== Initial game setup ==================
 shuffleAndCreateGrid(MyCards);
 hideCards(); // Hide the cards when the game starts
 updateScoreDisplay();
@@ -197,7 +197,7 @@ updateErrorCount();
 
 
 
-// function for my score ============================
+// ====================== function for my score ============================
 function updateScoreDisplay() {
   const scoreDisplay = document.getElementById("score");
   scoreDisplay.textContent = `Score: ${score}`;
