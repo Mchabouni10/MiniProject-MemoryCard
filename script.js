@@ -141,34 +141,34 @@ function reveal2chosenCard(card) { //the longest logic to work on it. the name o
       const firstCard = selectedCards[0]; // set the first card revealed with index 0
       const secondCard = selectedCards[1]; // set the second card revealed with index 1
 
-      if (firstCard.dataset.index === secondCard.dataset.index) {
+      if (firstCard.dataset.index === secondCard.dataset.index) { //statement if the first card index meet each other remove them from the list 
         selectedCards.pop();
         waitForMove = 0;
         return;
       }
 
-      if (
+      if ( //statement if the card matched hint = i did it by image source because I duplicate my list 
         firstCard.querySelector("img").src ===secondCard.querySelector("img").src
       ) {
-        firstCard.classList.add("matched");
-        secondCard.classList.add("matched");
-        cardGrid.removeChild(firstCard);
-        cardGrid.removeChild(secondCard);
+        firstCard.classList.add("matched"); // switch the class of the card to matched 
+        secondCard.classList.add("matched"); // switch the class of the card to matched 
+        cardGrid.removeChild(firstCard); //each time the card are match will be removed from the grid 
+        cardGrid.removeChild(secondCard); //remove the matched second card as well
 
-        selectedCards = [];
-        waitForMove = 0;
-        twoMatchedCards += 2;
-        score += 1; // Update player score
+        selectedCards = []; // once the card matched clear the array 
+        waitForMove = 0; // make move to zero to have another two clicks 
+        twoMatchedCards += 2; // set the matched card to 2 
+        score += 2; // Update player score
         updateScoreDisplay(); // Update the score display on the page
         
 
-        if (twoMatchedCards === cardNumbers) {
-          clearInterval(timerInterval);
-          setTimeout(() => {
-            alert(
-              "Congratulations! You won! Your time: " + cardTimer.textContent
+        if (twoMatchedCards === cardNumbers) { // statement if the card twomatched card equal to my card number mean my array lenght
+          clearInterval(timerInterval); //mean we matched all the card and game is over
+          setTimeout(() => { //set time and alert that we won 
+            alert( // after wining 
+              'Congratulations! You won! Score:' + score.textContent + 'Your time:' + cardTimer.textContent 
             );
-          }, 500);
+          }, 3000);
         }
       } else {
         errorCount += 1
@@ -184,6 +184,8 @@ function reveal2chosenCard(card) { //the longest logic to work on it. the name o
   }
 }
 
+
+//======== the restart Button fonctionality =============
 const restartButton = document.getElementById("restartButton");
 restartButton.addEventListener("click", resetGame);
 
