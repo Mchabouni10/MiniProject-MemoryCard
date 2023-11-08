@@ -2,7 +2,11 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     background-image:url(images/background.jpeg);
-    background-size:cover;
+    height: 100%;
+    width: 100%;
+    background-size: 100% 100%; 
+    background-repeat: no-repeat;
+    background-position: center center;
     margin: 0;
     padding: 0;
   }
@@ -43,7 +47,7 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 24px;
-    background-color: #58d6ef; /* Card back background color */
+    /* background-color: #58d6ef; Card back background color */
   }
   
   /* .card-front {
@@ -55,9 +59,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-color: aliceblue;
+    border: solid whitesmoke ;
     background-color: #43c6f8;
     backface-visibility: hidden;
+    box-shadow: 2px 1px 1px lightblue;
   }
   
   .card img {
