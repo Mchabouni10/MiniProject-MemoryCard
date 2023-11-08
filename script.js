@@ -30,32 +30,39 @@ let score = 0;
 let errorCount = 0;
 
 
-shuffleAndCreateGrid(MyCards);
-hideCards();
+shuffleAndCreateGrid(MyCards);// always shuffle the card in ramdmizw when game start
+hideCards(); // hide cards when the game start
 
-// Function to shuffle an array
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+
+
+
+//let create function that randomize my array of cards this way we
+//can change the postion of the cards each time revealed.
+
+
+// =======Function to shuffle an array============
+function shuffleArray(array) { //name the function shuffle the Array
+  for (let i = array.length - 1; i > 0; i--) { //using for loop to iterate my array
+    const j = Math.floor(Math.random() * (i + 1)); //using math floor to generate a random integer j between 0 and i
+    [array[i], array[j]] = [array[j], array[i]]; //swapping a value between two variables without a need of temporary variable
   }
 }
 
-// Function to create and shuffle the game grid
-function shuffleAndCreateGrid(cards) {
-  cardGrid.innerHTML = "";
-  shuffleArray(cards);
+// ============== Function to create and shuffle the game grid =============================
+function shuffleAndCreateGrid(cards) { // function called shuffle and create my grid usining DOM
+  cardGrid.innerHTML = ""; // clean my screen each time we start the game
+  shuffleArray(cards); // call the function shuffle to shffule before to put the card in the grid 
 
-  cards.forEach((card, index) => {
-    const cardElement = document.createElement("div");
-    cardElement.classList.add("card");
-    cardElement.dataset.index = index;
+  cards.forEach((card, index) => { //using the index in my array to crate my grid
+    const cardElement = document.createElement("div"); // create a div using createElement 
+    cardElement.classList.add("card"); // add the class card to the image
+    cardElement.dataset.index = index; //using dataset from w3 school to get image imformation
 
-    const cardFront = document.createElement("div");
-    cardFront.classList.add("card-front");
+    const cardFront = document.createElement("div"); // create a frond face for the card and is the image itself
+    cardFront.classList.add("card-front"); // add a class card - front to the face up
 
-    const cardBack = document.createElement("div");
-    cardBack.classList.add("card-back");
+    const cardBack = document.createElement("div"); //create a back for the image is just a background
+    cardBack.classList.add("card-back"); // add a class for the back of the card 
 
     const img = document.createElement("img");
     img.src = card;
