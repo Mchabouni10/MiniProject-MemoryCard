@@ -96,12 +96,12 @@ function hideCards() { //function that hide the cards in the begning of the game
 }
 
 // ================= Function to start the game timer =================
-function startGameTimer() {
-  let seconds = 0;
-  timerInterval = setInterval(() => {
-    seconds++;
-    cardTimer.textContent = seconds;
-  }, 1000);
+function startGameTimer() { //function to called startgameTimer to count the second from the start of the game through the end 
+  let seconds = 0; //set up second to zero to start from second zero 
+  timerInterval = setInterval(() => { //using w3 school to understand the pupose of this function
+    seconds++; //increment the seconds by 1 second using setInterval
+    cardTimer.textContent = seconds; //append the seconds in my screen
+  }, 1000); // using 1000 millisecond or 1 second as counting unit 
 }
 
 // Function to reset the cards to their initial state (face down)
