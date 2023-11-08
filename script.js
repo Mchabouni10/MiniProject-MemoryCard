@@ -29,6 +29,16 @@ let startThegame = false; //set the start game to false
 let timerInterval; // using for counting the time in second
 let score = 0; // start the game from second zero
 let errorCount = 0; // a variable for the number of errors
+const players = {
+    1: {
+      score: 0,
+      errors: 0,
+    },
+    2: {
+      score: 0,
+      errors: 0,
+    },
+  };
 let currentPlayer = 1; //set the player 1
 
 shuffleAndCreateGrid(MyCards); // always shuffle the card in ramdmizw when game start
@@ -256,3 +266,32 @@ player2Button.addEventListener('click',() => {
     currentPlayer = 2 ;
     playerTurn();
 })
+//===== function  update each player Game Data ============
+function updateGameData() {
+    const currentPlayerData = players[currentPlayer];
+    currentPlayerData.score = score;
+    currentPlayerData.errors = errorCount;
+    currentPlayerData.time = parseInt(cardTimer.textContent);
+  }
+
+//============= function to switch players ===========
+function switchPlayer() {
+    // Update the game data for the current player
+    updateGameData();
+  
+    // Switch to the other player (1 -> 2 or 2 -> 1)
+    currentPlayer = currentPlayer === 1 ? 2 : 1;
+    playerTurn();
+  
+    // Update the display with the new player's data
+    const currentPlayerData = players[currentPlayer];
+    score = currentPlayerData.score;
+    errorCount = currentPlayerData.errors;
+    cardTimer.textContent = currentPlayerData.time;
+    updateScoreDisplay();
+    updateErrorCount();
+  }
+  
+  // Add event listeners to the player switch buttons
+  player1Button.addEventListener('click', switchPlayer);
+  player2Button.addEventListener('click', switchPlayer);
