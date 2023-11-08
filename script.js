@@ -88,14 +88,14 @@ function shuffleAndCreateGrid(cards) { // function called shuffle and create my 
 }
 
 // =========Function to hide the cards (turn them face down)==============
-function hideCards() {
-  const allCards = document.querySelectorAll(".card");
-  allCards.forEach((card) => {
-    card.classList.remove("turnOver");
+function hideCards() { //function that hide the cards in the begning of the game or when we click reset the game 
+  const allCards = document.querySelectorAll(".card"); //create const allcards to select all the cards in my array
+  allCards.forEach((card) => { //using a loop for each element inside my array 
+    card.classList.remove("turnOver"); //remove the cards that been turned over 
   });
 }
 
-// Function to start the game timer
+// ================= Function to start the game timer =================
 function startGameTimer() {
   let seconds = 0;
   timerInterval = setInterval(() => {
