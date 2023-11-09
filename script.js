@@ -351,6 +351,7 @@ function showPromptScreen() {
   document.getElementById('PromptScreen').style.display = 'block';
 
   // Display the new prompt screen with the winning information
+  document.getElementById
   document.getElementById("FinalScore").textContent = score;
   document.getElementById("FinalTime").textContent = cardTimer.textContent;
   document.getElementById("FinalErros").textContent = errorCount;
@@ -363,9 +364,24 @@ function showPromptScreen() {
   document
     .getElementById("confirmNoButton")
     .addEventListener("click", resetGame);
+    playerWinner();
   
 }
 
 function exitGame() {
   window.close();
+}
+
+
+function playerWinner() {
+  const player1Score = players[1].score;
+  const player2Score = players[2].score;
+
+  if (player1Score > player2Score) {
+    console.log('player 1 win')
+  } else if (player1Score < player2Score) {
+    console.log('Player 2 wins');
+  } else {
+   console.log('Its a tie');
+  }
 }
