@@ -194,18 +194,17 @@ function reveal2chosenCard(card) {
         if (twoMatchedCards === cardNumbers) {
           // statement if the card twomatched card equal to my card number mean my array lenght
           clearInterval(timerInterval); //mean we matched all the card and game is over
-          setTimeout(() => {
-            //set time and alert that we won
-            alert(
-              // after wining
-              "Congratulations! You won! Score:" +
-                score.textContent +
-                "Your time:" +
-                cardTimer.textContent
-            );
-          }, 3000);
+          clearInterval(timerInterval);
+
+          // Display the prompt screen with the winning information
+          document.getElementById('FinalScore').textContent = score.textContent;
+          document.getElementById('FinalTime').textContent = cardTimer.textContent;
+          document.getElementById('FinalErros').textContent = errorCount.textContent;
+          document.getElementById('winPromptScreen').style.display = 'block';
+        
         }
-      } else {
+      }
+       else {
         errorCount += 1;
         updateErrorCount();
         setTimeout(() => {
@@ -218,6 +217,8 @@ function reveal2chosenCard(card) {
     }
   }
 }
+
+
 
 //======== the restart Button fonctionality =============
 const restartButton = document.getElementById("restartButton"); //create an eventListner for my restart button
