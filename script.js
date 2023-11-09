@@ -231,26 +231,31 @@ updateErrorCount(); //update the errors to zero
 
 
 
+
 // ====================== function for my score ============================
 function updateScoreDisplay() { // function that update the score each time two cards matched 
-  const scoreDisplay = document.getElementById("score"); //get the the score display using get elementById
+  const scoreDisplay = document.getElementById("score"); //access the score display using get elementById
   scoreDisplay.textContent = `Score: ${score}`; // show the score updated each time on my screen 
 }
+
+
 
 
 // =========== function to count the number of error after 2 click not matched  ==================
 function updateErrorCount() {
   // once we click twice and cards doesn't match is one error
-  const errorCountScreen = document.getElementById("errorCount");
+  const errorCountScreen = document.getElementById("errorCount"); //get the error usin get Element ById
   errorCountScreen.textContent = `Errors: ${errorCount}`; //Display the error countion on my screen using textcentent
 }
 
+
+
 // ========= function for player turn ================
-function playerTurn() {
-    const player1On = document.getElementById("player1");
-    const player2On = document.getElementById("player2");
+function playerTurn() {  //function to switch between two players 
+    const player1On = document.getElementById("player1"); //access the player 1
+    const player2On = document.getElementById("player2"); //access the player 2
   
-    if (currentPlayer === 1) {
+    if (currentPlayer === 1) { //statement if the is 1 mean show player 1 and hide player 2
       player1On.style.display = "block";
       player2On.style.display = "none";
     } else {
@@ -260,22 +265,25 @@ function playerTurn() {
   }
   
 
-//========= add buttons for player 1 and player 2 ===========
-const player1Button = document.getElementById('player1Button')
-const player2Button = document.getElementById('player2Button')
 
-player1Button.addEventListener('click', () => {
-    currentPlayer = 1 ; 
+
+//========= add buttons for player 1 and player 2 ===========
+const player1Button = document.getElementById('player1Button') // access to button for player 1
+const player2Button = document.getElementById('player2Button') // access to button for player 2
+
+player1Button.addEventListener('click', () => { //add an eventListner click for player 1
+    currentPlayer = 1 ; //the current player is 1
  
-    players[2].time = seconds
+    players[2].time = seconds //switch time when we switch player with Dylan help
     seconds = players[1].time
-    playerTurn();
+    playerTurn(); //invoke function player turn to call the player
 })
-player2Button.addEventListener('click',() => {
+
+player2Button.addEventListener('click',() => { //add an eventListner when we click player 2 button 
     currentPlayer = 2 ;
-    players[1].time = seconds
+    players[1].time = seconds //switch time to player 1 to keep tracking time 
     seconds = players[2].time
-    playerTurn();
+    playerTurn();  // invoke function to player 2 
 })
 
 
