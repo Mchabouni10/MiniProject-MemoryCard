@@ -134,13 +134,6 @@ function startGameTimer() {
 //   });
 // }
 
-
-
-
-
-
-
-
 // ========== Function to reset the entire game ==========
 function resetGame() {
   //reset all the game
@@ -161,8 +154,6 @@ function resetGame() {
   players[2].errors = 0;
   players[2].time = 0;
 
-
-
   //   resetTheCards(); // Reset the cards
   shuffleAndCreateGrid(MyCards); // Create a new shuffled grid
   hideCards(); // invoke Hide the cards
@@ -170,14 +161,6 @@ function resetGame() {
   updateErrorCount(); //invoke errors update to update all this 3 to zero
   document.getElementById("exitScreen").style.display = "none";
 }
-
-
-
-
-
-
-
-
 
 // ==================== Function to reveal two chosen cards and handle the game logic ========
 function reveal2chosenCard(card) {
@@ -220,40 +203,31 @@ function reveal2chosenCard(card) {
           // statement if the card twomatched card equal to my card number mean my array lenght
           clearInterval(timerInterval); //mean we matched all the card and game is over
           showPromptScreen(); //show the prompt screen if we want to exit or not
-
         }
       } else {
         errorCount += 1; // increment the errors
         updateErrorCount(); //invoke the update Errorcount();
-        setTimeout(() => { //set timeout for turning over card 
+        setTimeout(() => {
+          //set timeout for turning over card
           firstCard.classList.remove("turnOver"); // access first card and remove the flip it using classList remove
-          secondCard.classList.remove("turnOver"); // access second card and remove the flip because they don't match 
+          secondCard.classList.remove("turnOver"); // access second card and remove the flip because they don't match
           selectedCards = []; // set my selected card to empty again
-          waitForMove = 0; // set waitfor move to have another two clicks 
+          waitForMove = 0; // set waitfor move to have another two clicks
         }, 1000);
       }
     }
   }
 }
 
-
-
 //======== the restart Button fonctionality =============
 const restartButton = document.getElementById("restartButton"); //create an eventListner for my restart button
 restartButton.addEventListener("click", resetGame);
-
-
-
-
 
 // ====================== Initial game setup ==================
 shuffleAndCreateGrid(MyCards);
 hideCards(); // Hide the cards when the game starts
 updateScoreDisplay(); //will update the score to zero
 updateErrorCount(); //update the errors to zero
-
-
-
 
 // ====================== function for my score ============================
 function updateScoreDisplay() {
@@ -277,7 +251,7 @@ function playerTurn() {
 
   if (currentPlayer === 1) {
     //statement if the is 1 mean show player 1 and hide player 2
-    player1.style.display = "block";  //display player 1
+    player1.style.display = "block"; //display player 1
     player2.style.display = "none"; //hide player 2
   } else {
     player1.style.display = "none"; // hide player 1
@@ -324,14 +298,12 @@ function updatePlayerData(playerNumber) {
   playerTimeElement.textContent = `Time: ${currentPlayerData.time}s`;
 }
 
-
 //===== function  update each player Game Data ============
 function updateGameData() {
   const currentPlayerData = players[currentPlayer];
   currentPlayerData.score = score;
   currentPlayerData.errors = errorCount;
   currentPlayerData.time = parseInt(cardTimer.textContent); //I have it from Internet
-
 }
 
 //============= function to switch players ===========
@@ -353,53 +325,44 @@ function switchPlayer() {
 }
 
 // Add event listeners to the player switch buttons
-player1Button.addEventListener("click", switchPlayer);
-player2Button.addEventListener("click", switchPlayer);
+player1Button.addEventListener("click", switchPlayer); //click on player 1 button to switch the player 1 playing
+player2Button.addEventListener("click", switchPlayer); //click on player 2 button to switch the player 2 playing
 
-
-    
-
-//   }
-// }
-
-// function for promptScreen
+//============== function for promptScreen======================
 function showPromptScreen() {
   // Hide the existing prompt screen if it's displayed
   document.getElementById("exitScreen").style.display = "block";
-  document.getElementById('PromptScreen').style.display = 'block';
+  document.getElementById("PromptScreen").style.display = "block";
 
   // Display the new prompt screen with the winning information
-  document.getElementById
-  document.getElementById("FinalScore").textContent = score;
-  document.getElementById("FinalTime").textContent = cardTimer.textContent;
-  document.getElementById("FinalErros").textContent = errorCount;
-  
+  let time = cardTimer.textContent;
+  document.getElementById("FinalScore").textContent = score; // access to final score
+  document.getElementById("FinalTime").textContent = time; // access to final time
+  document.getElementById("FinalErros").textContent = errorCount; // access to final errors
 
-  document
+  document   //access to yes button to exit screen 
     .getElementById("confirmYesButton")
     .addEventListener("click", exitGame);
-    
-  document
+
+  document  // acess to no button to reset game and close exit screen 
     .getElementById("confirmNoButton")
     .addEventListener("click", resetGame);
-    playerWinner();
-  
+  playerWinner();
 }
 
 function exitGame() {
   window.close();
 }
 
-
 function playerWinner() {
   const player1Score = players[1].score;
   const player2Score = players[2].score;
 
   if (player1Score > player2Score) {
-    console.log('player 1 win')
+    console.log("player 1 win");
   } else if (player1Score < player2Score) {
-    console.log('Player 2 wins');
+    console.log("Player 2 wins");
   } else {
-   console.log('Its a tie');
+    console.log("Its a tie");
   }
 }
