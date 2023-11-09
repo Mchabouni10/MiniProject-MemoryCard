@@ -2,12 +2,10 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     background-image:url(images/background.png);
-    /* height: 30%; /* Use viewport height for full height */
-    /* width: 100%; */ 
     background-size: 100% 100%; 
     background-repeat: no-repeat;
-    background-position: center; /* Center horizontally */
-    margin: 0;
+    background-position: center;
+    margin-bottom: 0;
     padding: 0;
   }
   
@@ -163,22 +161,41 @@ body {
 }
 
 .scoringInfo{
-    background-color: #FFFFFF;
-    opacity: .8;
+    background-color: rgba(255, 255, 255, 0.8);
     align-items: center;
     margin-left: 34%;
     margin-right: 34%;
     border-radius: 4%;
     border : solid #00DDEB 4px;
     text-align: center;
-    margin-top: 1%;
+    margin-top: 3%;
 }
+
 .gamename{
     color: #f42c7d;
     font-size: 30px;
     text-shadow: 4px 4px 6px #901f68;
     font-weight: bold;
-    white-space: nowrap;
-    
-    
+    white-space: wrap;
+}
+
+.players-info{
+    color: #ffbf35;
+    font-size: 20px;
+    font-weight: bold;
+    white-space: wrap;
+}
+
+#score{
+    color: #ffbf35;
+    font-size: 20px;
+    font-weight: bold;
+    white-space: wrap;
+}
+
+#errorCount{
+    color: #ffbf35;
+    font-size: 20px;
+    font-weight: bold;
+    white-space: wrap;
 }
