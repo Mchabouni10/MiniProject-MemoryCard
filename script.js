@@ -158,6 +158,7 @@ function resetGame() {
   hideCards(); // invoke Hide the cards
   updateScoreDisplay(); //invoke scre update
   updateErrorCount(); //invoke errors update to update all this 3 to zero
+  document.getElementById("exitScreen").style.display = "none";
 }
 
 
@@ -337,23 +338,38 @@ function switchPlayer() {
 player1Button.addEventListener("click", switchPlayer);
 player2Button.addEventListener("click", switchPlayer);
 
+
+//function
+// function findWinner(){
+//   if (score){
+//     numb
+    
+
+//   }
+// }
+
 // function for promptScreen
 function showPromptScreen() {
   // Hide the existing prompt screen if it's displayed
   document.getElementById("exitScreen").style.display = "block";
+  document.getElementById('PromptScreen').style.display = 'block';
 
   // Display the new prompt screen with the winning information
+  document.getElementById('player1').textContent = players.textContent;
+  console.log(players);
   document.getElementById("FinalScore").textContent = score;
   document.getElementById("FinalTime").textContent = cardTimer.textContent;
   document.getElementById("FinalErros").textContent = errorCount;
-  // document.getElementById('winPromptScreen').style.display = 'block';
+  
 
   document
     .getElementById("confirmYesButton")
     .addEventListener("click", exitGame);
+    
   document
     .getElementById("confirmNoButton")
     .addEventListener("click", resetGame);
+  
 }
 
 function exitGame() {
