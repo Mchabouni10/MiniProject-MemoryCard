@@ -232,13 +232,13 @@ updateErrorCount(); //update the errors to zero
 
 
 // ====================== function for my score ============================
-function updateScoreDisplay() { // function 
-  const scoreDisplay = document.getElementById("score");
-  scoreDisplay.textContent = `Score: ${score}`;
+function updateScoreDisplay() { // function that update the score each time two cards matched 
+  const scoreDisplay = document.getElementById("score"); //get the the score display using get elementById
+  scoreDisplay.textContent = `Score: ${score}`; // show the score updated each time on my screen 
 }
 
 
-// =========== function to count the number of error we made ==================
+// =========== function to count the number of error after 2 click not matched  ==================
 function updateErrorCount() {
   // once we click twice and cards doesn't match is one error
   const errorCountScreen = document.getElementById("errorCount");
