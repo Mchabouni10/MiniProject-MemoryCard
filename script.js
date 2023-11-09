@@ -339,10 +339,6 @@ player1Button.addEventListener("click", switchPlayer);
 player2Button.addEventListener("click", switchPlayer);
 
 
-//function
-// function findWinner(){
-//   if (score){
-//     numb
     
 
 //   }
@@ -355,8 +351,6 @@ function showPromptScreen() {
   document.getElementById('PromptScreen').style.display = 'block';
 
   // Display the new prompt screen with the winning information
-  document.getElementById('player1').textContent = players.textContent;
-  console.log(players);
   document.getElementById("FinalScore").textContent = score;
   document.getElementById("FinalTime").textContent = cardTimer.textContent;
   document.getElementById("FinalErros").textContent = errorCount;
