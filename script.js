@@ -126,7 +126,7 @@ function startGameTimer() {
   }, 1000); // using 1000 millisecond or 1 second as counting unit
 }
 
-// // ============ Function to reset the cards to their initial state (face down) =============
+// // ============ Function to reset the cards to their initial state (face down) ============= I don't need it for now
 // function resetTheCards() { // function that reset the card when I load or when I restart the game
 //   const allCards1 = document.querySelectorAll(".card"); //create a const that iretarate my array
 //   allCards1.forEach((card) => { //itterate all my array for each card using there id
@@ -220,20 +220,23 @@ function reveal2chosenCard(card) {
 }
 
 //======== the restart Button fonctionality =============
-const restartButton = document.getElementById("restartButton");
+const restartButton = document.getElementById("restartButton"); //create an eventListner for my restart button
 restartButton.addEventListener("click", resetGame);
 
-// ====================== Initial game setup ==================
+// ====================== Initial game setup ================== 
 shuffleAndCreateGrid(MyCards);
 hideCards(); // Hide the cards when the game starts
-updateScoreDisplay();
-updateErrorCount();
+updateScoreDisplay(); //will update the score to zero
+updateErrorCount(); //update the errors to zero
+
+
 
 // ====================== function for my score ============================
-function updateScoreDisplay() {
+function updateScoreDisplay() { // function 
   const scoreDisplay = document.getElementById("score");
   scoreDisplay.textContent = `Score: ${score}`;
 }
+
 
 // =========== function to count the number of error we made ==================
 function updateErrorCount() {
