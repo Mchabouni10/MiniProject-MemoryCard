@@ -153,6 +153,16 @@ function resetGame() {
   startThegame = false; //set the start game to zero
   selectedCards = []; // set the array that memorize matched and turned card to zero
   waitForMove = 0;
+
+  players[1].score = 0;
+  players[1].errors = 0;
+  players[1].time = 0;
+  players[2].score = 0;
+  players[2].errors = 0;
+  players[2].time = 0;
+
+
+
   //   resetTheCards(); // Reset the cards
   shuffleAndCreateGrid(MyCards); // Create a new shuffled grid
   hideCards(); // invoke Hide the cards
@@ -209,18 +219,18 @@ function reveal2chosenCard(card) {
         if (twoMatchedCards === cardNumbers) {
           // statement if the card twomatched card equal to my card number mean my array lenght
           clearInterval(timerInterval); //mean we matched all the card and game is over
-          showPromptScreen();
+          showPromptScreen(); //show the prompt screen if we want to exit or not
 
         }
       } else {
-        errorCount += 1;
-        updateErrorCount();
-        setTimeout(() => {
-          firstCard.classList.remove("turnOver");
-          secondCard.classList.remove("turnOver");
-          selectedCards = [];
-          waitForMove = 0;
-        }, 2000);
+        errorCount += 1; // increment the errors
+        updateErrorCount(); //invoke the update Errorcount();
+        setTimeout(() => { //set timeout for turning over card 
+          firstCard.classList.remove("turnOver"); // access first card and remove the flip it using classList remove
+          secondCard.classList.remove("turnOver"); // access second card and remove the flip because they don't match 
+          selectedCards = []; // set my selected card to empty again
+          waitForMove = 0; // set waitfor move to have another two clicks 
+        }, 1000);
       }
     }
   }
@@ -232,11 +242,18 @@ function reveal2chosenCard(card) {
 const restartButton = document.getElementById("restartButton"); //create an eventListner for my restart button
 restartButton.addEventListener("click", resetGame);
 
+
+
+
+
 // ====================== Initial game setup ==================
 shuffleAndCreateGrid(MyCards);
 hideCards(); // Hide the cards when the game starts
 updateScoreDisplay(); //will update the score to zero
 updateErrorCount(); //update the errors to zero
+
+
+
 
 // ====================== function for my score ============================
 function updateScoreDisplay() {
@@ -255,16 +272,16 @@ function updateErrorCount() {
 // ========= function for player turn ================
 function playerTurn() {
   //function to switch between two players
-  const player1On = document.getElementById("player1"); //access the player 1
-  const player2On = document.getElementById("player2"); //access the player 2
+  const player1 = document.getElementById("player1"); //access the player 1
+  const player2 = document.getElementById("player2"); //access the player 2
 
   if (currentPlayer === 1) {
     //statement if the is 1 mean show player 1 and hide player 2
-    player1On.style.display = "block";
-    player2On.style.display = "none";
+    player1.style.display = "block";  //display player 1
+    player2.style.display = "none"; //hide player 2
   } else {
-    player1On.style.display = "none";
-    player2On.style.display = "block";
+    player1.style.display = "none"; // hide player 1
+    player2.style.display = "block"; // display player 2
   }
 }
 
@@ -306,14 +323,15 @@ function updatePlayerData(playerNumber) {
   playerErrorsElement.textContent = `Errors: ${currentPlayerData.errors}`;
   playerTimeElement.textContent = `Time: ${currentPlayerData.time}s`;
 }
+
+
 //===== function  update each player Game Data ============
 function updateGameData() {
   const currentPlayerData = players[currentPlayer];
   currentPlayerData.score = score;
   currentPlayerData.errors = errorCount;
   currentPlayerData.time = parseInt(cardTimer.textContent); //I have it from Internet
-  // const currentPlayerDisplay = document.getElementById(`player${currentPlayer}`);
-  // currentPlayerDisplay.innerHTML = `Player ${currentPlayer} - Score: ${score}, Errors: ${errorCount}, Time: ${currentPlayerData.time}s`;
+
 }
 
 //============= function to switch players ===========
@@ -341,14 +359,17 @@ player2Button.addEventListener("click", switchPlayer);
 
     
 
+//   }
+// }
 
-// =========== function for promptScreen ===========================
+// function for promptScreen
 function showPromptScreen() {
   // Hide the existing prompt screen if it's displayed
   document.getElementById("exitScreen").style.display = "block";
   document.getElementById('PromptScreen').style.display = 'block';
 
   // Display the new prompt screen with the winning information
+  document.getElementById
   document.getElementById("FinalScore").textContent = score;
   document.getElementById("FinalTime").textContent = cardTimer.textContent;
   document.getElementById("FinalErros").textContent = errorCount;
@@ -361,7 +382,6 @@ function showPromptScreen() {
   document
     .getElementById("confirmNoButton")
     .addEventListener("click", resetGame);
-
     playerWinner();
   
 }
@@ -374,16 +394,12 @@ function exitGame() {
 function playerWinner() {
   const player1Score = players[1].score;
   const player2Score = players[2].score;
-  const winnerPlayer = document.getElementById('winnerPlayer');
 
   if (player1Score > player2Score) {
     console.log('player 1 win')
-    winnerPlayer.textContent = 'Player 1 wins!';
   } else if (player1Score < player2Score) {
     console.log('Player 2 wins');
-    winnerPlayer.textContent = 'player 2 win'
   } else {
    console.log('Its a tie');
-   winnerPlayer.textContent = 'no one win'
   }
 }
