@@ -274,12 +274,29 @@ player2Button.addEventListener('click',() => {
     seconds = players[2].time
     playerTurn();
 })
+
+
+
+
+// ===== function to update each player's game data and display =====
+function updatePlayerData(playerNumber) {
+    const currentPlayerData = players[playerNumber];
+    const playerScoreElement = document.getElementById(`player${playerNumber}Score`);
+    const playerErrorsElement = document.getElementById(`player${playerNumber}Errors`);
+    const playerTimeElement = document.getElementById(`player${playerNumber}Time`);
+
+    playerScoreElement.textContent = `Score: ${currentPlayerData.score}`;
+    playerErrorsElement.textContent = `Errors: ${currentPlayerData.errors}`;
+    playerTimeElement.textContent = `Time: ${currentPlayerData.time}s`;
+}
 //===== function  update each player Game Data ============
 function updateGameData() {
     const currentPlayerData = players[currentPlayer];
     currentPlayerData.score = score;
     currentPlayerData.errors = errorCount;
     currentPlayerData.time = parseInt(cardTimer.textContent); //I have it from Internet 
+    // const currentPlayerDisplay = document.getElementById(`player${currentPlayer}`);
+    // currentPlayerDisplay.innerHTML = `Player ${currentPlayer} - Score: ${score}, Errors: ${errorCount}, Time: ${currentPlayerData.time}s`;
   }
 
 //============= function to switch players ===========

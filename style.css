@@ -161,3 +161,24 @@ body {
     display: flex;
     justify-content: space-around; 
 }
+
+.scoringInfo{
+    background-color: #FFFFFF;
+    opacity: .8;
+    align-items: center;
+    margin-left: 34%;
+    margin-right: 34%;
+    border-radius: 4%;
+    border : solid #00DDEB 4px;
+    text-align: center;
+    margin-top: 1%;
+}
+.gamename{
+    color: #f42c7d;
+    font-size: 30px;
+    text-shadow: 4px 4px 6px #901f68;
+    font-weight: bold;
+    white-space: nowrap;
+    
+    
+}

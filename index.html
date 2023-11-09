@@ -9,19 +9,21 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header class="header">
+    <div class="scoringInfo">
       <div class="gamename">Memory cards for Kids</div>
-      <div id="player1" class="player">Player 1</div>
-      <div id="player2" class="player">Player 2</div>
+      <div class="players-info">
+        <div id="player1" class="player">Player 1</div>
+        <div id="player2" class="player">Player 2</div>
+      </div>
       <div id="score">Score: 0</div>
       <div id="errorCount">Errors: 0</div>
-      <div class="timer">Time: <span id="secondTimer">0</span></div>
-    </header>
+      <div class="timer">Time:<span id="secondTimer">0</span></div>
+    </div>
     <div class="myScreen" id="cards"></div>
     <div class="Allbuttons">
-      <button class = 'buttons1' id="restartButton">Restart</button>
-      <button class = 'buttons2' id="player2Button">Player 1</button>
-      <button class = 'buttons3' id="player1Button">Player 2</button>
+      <button class="buttons1" id="restartButton">Restart</button>
+      <button class="buttons2" id="player2Button">Player 1</button>
+      <button class="buttons3" id="player1Button">Player 2</button>
     </div>
 
     <script src="script.js" async defer></script>
