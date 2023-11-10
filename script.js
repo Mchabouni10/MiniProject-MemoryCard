@@ -320,9 +320,7 @@ function switchPlayer() {
   updateErrorCount();
 }
 
-// // Add event listeners to the player switch buttons
-// player1Button.addEventListener("click", switchPlayer); //click on player 1 button to switch the player 1 playing
-// player2Button.addEventListener("click", switchPlayer); //click on player 2 button to switch the player 2 playing
+
 
 //============== function for promptScreen======================
 function showPromptScreen() {
