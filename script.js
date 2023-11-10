@@ -330,28 +330,19 @@ player2Button.addEventListener("click", switchPlayer); //click on player 2 butto
 
 //============== function for promptScreen======================
 function showPromptScreen() {
-  // Hide the existing prompt screen if it's displayed
   document.getElementById("exitScreen").style.display = "block";
   document.getElementById("PromptScreen").style.display = "block";
 
-  // Display the new prompt screen with the winning information
-  let time = cardTimer.textContent;
-  document.getElementById("FinalScore").textContent = score; // access to final score
-  document.getElementById("FinalTime").textContent = time; // access to final time
-  document.getElementById("FinalErros").textContent = errorCount; // access to final errors
+  const finaltime = cardTimer.textContent;
+  const finalscore = players[currentPlayer].score;
+  const finalerrors = players[currentPlayer].errors;
 
-  document   //access to yes button to exit screen 
-    .getElementById("confirmYesButton")
-    .addEventListener("click", exitGame);
+  document.getElementById("FinalScore").textContent = finalscore;
+  document.getElementById("FinalTime").textContent = finaltime;
+  document.getElementById("FinalErrors").textContent = finalerrors;
 
-  document  // acess to no button to reset game and close exit screen 
-    .getElementById("confirmNoButton")
-    .addEventListener("click", resetGame);
-  playerWinner();
-}
-
-function exitGame() {
-  window.close();
+  document.getElementById("confirmYesButton").addEventListener("click", exitGame);
+  document.getElementById("confirmNoButton").addEventListener("click", resetGame);
 }
 
 function playerWinner() {
@@ -365,4 +356,8 @@ function playerWinner() {
   } else {
     console.log("Its a tie");
   }
+}
+
+function exitGame() {
+  window.close();
 }
