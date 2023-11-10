@@ -68,7 +68,7 @@ function shuffleAndCreateGrid(cards) {
   shuffleArray(cards); // call the function shuffle to shffule before to put the card in the grid
 
   cards.forEach((card, index) => {
-    //using the index in my array to crate my grid
+    //using the index in my array to create my grid
     const cardElement = document.createElement("div"); // create a div using createElement
     cardElement.classList.add("card"); // add the class card to the image
     cardElement.dataset.index = index; //using dataset from w3 school to get image imformation
@@ -126,18 +126,13 @@ function startGameTimer() {
   }, 1000); // using 1000 millisecond or 1 second as counting unit
 }
 
-// // ============ Function to reset the cards to their initial state (face down) ============= I don't need it for now
-// function resetTheCards() { // function that reset the card when I load or when I restart the game
-//   const allCards1 = document.querySelectorAll(".card"); //create a const that iretarate my array
-//   allCards1.forEach((card) => { //itterate all my array for each card using there id
-//     card.classList.remove("turnOver", "matched"); //using ClassList remove to remove the turned and matched cards
-//   });
-// }
+
+
 
 // ========== Function to reset the entire game ==========
 function resetGame() {
   //reset all the game
-  clearInterval(timerInterval);
+  clearInterval(timerInterval); // reset the time 
   cardGrid.innerHTML = ""; // Clear the grid
   cardTimer.textContent = "0"; //set the timer on my screen to zero
   score = 0; //set the score to zero
@@ -146,6 +141,7 @@ function resetGame() {
   startThegame = false; //set the start game to zero
   selectedCards = []; // set the array that memorize matched and turned card to zero
   waitForMove = 0;
+  seconds = 0;
 
   players[1].score = 0;
   players[1].errors = 0;
@@ -269,7 +265,7 @@ player1Button.addEventListener("click", () => {
 
   players[2].time = seconds; //switch time when we switch player with Dylan help
   seconds = players[1].time;
-  playerTurn(); //invoke function player turn to call the player
+  playerTurn(); //invoke function player turn to call the player1
 });
 
 player2Button.addEventListener("click", () => {
@@ -277,7 +273,7 @@ player2Button.addEventListener("click", () => {
   currentPlayer = 2;
   players[1].time = seconds; //switch time to player 1 to keep tracking time
   seconds = players[2].time;
-  playerTurn(); // invoke function to player 2
+  playerTurn(); // invoke function to call player 2
 });
 
 // ===== function to update each player's game data and display =====
@@ -312,7 +308,7 @@ function switchPlayer() {
   updateGameData();
 
   // Switch to the other player (1 -> 2 or 2 -> 1)
-  currentPlayer = currentPlayer === 1 ? 2 : 1; // I just find it overflow and took the idea
+  currentPlayer = 3 - currentPlayer; // Switches between 1 and 2
   playerTurn();
 
   // Update the display with the new player's data
@@ -324,9 +320,9 @@ function switchPlayer() {
   updateErrorCount();
 }
 
-// Add event listeners to the player switch buttons
-player1Button.addEventListener("click", switchPlayer); //click on player 1 button to switch the player 1 playing
-player2Button.addEventListener("click", switchPlayer); //click on player 2 button to switch the player 2 playing
+// // Add event listeners to the player switch buttons
+// player1Button.addEventListener("click", switchPlayer); //click on player 1 button to switch the player 1 playing
+// player2Button.addEventListener("click", switchPlayer); //click on player 2 button to switch the player 2 playing
 
 //============== function for promptScreen======================
 function showPromptScreen() {
@@ -345,19 +341,26 @@ function showPromptScreen() {
   document.getElementById("confirmNoButton").addEventListener("click", resetGame);
 }
 
+function exitGame(){
+  window.close()
+}
+
+
+// =========== function PlayerWinner ======== checking who is a winner between to players 
 function playerWinner() {
   const player1Score = players[1].score;
   const player2Score = players[2].score;
 
-  if (player1Score > player2Score) {
-    console.log("player 1 win");
-  } else if (player1Score < player2Score) {
-    console.log("Player 2 wins");
-  } else {
-    console.log("Its a tie");
+  if (twoMatchedCards === cardNumbers) {
+    if (player1Score > player2Score) {
+      console.log("Player 1 wins");
+      alert("Player 1 wins");
+    } else if (player1Score < player2Score) {
+      console.log("Player 2 wins");
+      alert("Player 2 wins");
+    } else {
+      console.log("It's a tie");
+      resetGame();
+    }
   }
-}
-
-function exitGame() {
-  window.close();
 }
