@@ -18,10 +18,10 @@ const MyCards = [
   "images/8.png",
 ];
 
-const cardNumbers = MyCards.length;
-const cardGrid = document.getElementById("cards");
-const cardScore = document.getElementById("score");
-const cardTimer = document.getElementById("secondTimer");
+const cardNumbers = MyCards.length; // set cardNumbers to be my array lenght
+const cardGrid = document.getElementById("cards"); // set a cardGrid by id to cretae my cards
+const cardScore = document.getElementById("score"); // set card score by id to get my score
+const cardTimer = document.getElementById("secondTimer"); // set card timer for my time counting
 let selectedCards = []; //using an array for matched and flipped card
 let twoMatchedCards = 0; //using variable to count the number matched card
 let waitForMove = 0; //using variable for preventing more than two click
@@ -29,8 +29,9 @@ let startThegame = false; //set the start game to false
 let timerInterval; // using for counting the time in second
 let score = 0; // start the game from second zero
 let errorCount = 0; // a variable for the number of errors
-let seconds = 0; //
+let seconds = 0; // a variable that set time will start from second zero
 const players = {
+  // create an object that have two player plaer 1 and player 2 with elemnt score, errors and time
   1: {
     score: 0,
     errors: 0,
@@ -116,23 +117,31 @@ function hideCards() {
 }
 
 // ================= Function to start the game timer =================
+// Initialize variables to track elapsed time for each player
+let player1ElapsedTime = 0; // variable that elapse time for player 1
+let player2ElapsedTime = 0; // variable that elapse time for player 2
+
+// Function to start the game timer
 function startGameTimer() {
-  //function to called startgameTimer to count the second from the start of the game through the end
-  //set up second to zero to start from second zero
   timerInterval = setInterval(() => {
-    //using w3 school to understand the pupose of this function
-    seconds++; //increment the seconds by 1 second using setInterval
-    cardTimer.textContent = seconds; //append the seconds in my screen
-  }, 1000); // using 1000 millisecond or 1 second as counting unit
+    // use setIntervale that count by 1 second incrementation
+    // Increment the elapsed time for the current player
+    if (currentPlayer === 1) {
+      // statement if the player 1 we will elpase time for player 1
+      player1ElapsedTime++; // incrementation of time
+    } else {
+      player2ElapsedTime++; // else is the second player playing and increment his time
+    }
+    cardTimer.textContent =
+      currentPlayer === 1 ? player1ElapsedTime : player2ElapsedTime; // display the updated time for each player
+  }, 1000);
 }
-
-
-
 
 // ========== Function to reset the entire game ==========
 function resetGame() {
+  // the name of resetgame linked to restart button each time we restart game will erase all data
   //reset all the game
-  clearInterval(timerInterval); // reset the time 
+  clearInterval(timerInterval); // reset the time
   cardGrid.innerHTML = ""; // Clear the grid
   cardTimer.textContent = "0"; //set the timer on my screen to zero
   score = 0; //set the score to zero
@@ -140,23 +149,31 @@ function resetGame() {
   twoMatchedCards = 0; // set the matched card to zero
   startThegame = false; //set the start game to zero
   selectedCards = []; // set the array that memorize matched and turned card to zero
-  waitForMove = 0;
+  waitForMove = 0; // set 2 clicks to zero
   seconds = 0;
 
-  players[1].score = 0;
-  players[1].errors = 0;
-  players[1].time = 0;
-  players[2].score = 0;
-  players[2].errors = 0;
-  players[2].time = 0;
+  players[1].score = 0; //set player 1 score to zero
+  players[1].errors = 0; //set player 1 errors to zero
+  players[1].time = 0; //set player 1 time to zero
+  players[2].score = 0; //set player 2 score to zero
+  players[2].errors = 0; //set player 2 erros to zero
+  players[2].time = 0; // set plaer 2 time to zero
+
+  // Reset elapsed time for both players
+  player1ElapsedTime = 0; //set player 1 elapse time to zero
+  player2ElapsedTime = 0; //set player 2 elapse time to zero
 
   //   resetTheCards(); // Reset the cards
   shuffleAndCreateGrid(MyCards); // Create a new shuffled grid
   hideCards(); // invoke Hide the cards
-  updateScoreDisplay(); //invoke scre update
+  updateScoreDisplay(); //invoke score update
   updateErrorCount(); //invoke errors update to update all this 3 to zero
-  document.getElementById("exitScreen").style.display = "none";
+  document.getElementById("exitScreen").style.display = "none"; // not set yet
 }
+
+//======== the restart Button fonctionality =============
+const restartButton = document.getElementById("restartButton"); //create an eventListner for my restart button
+restartButton.addEventListener("click", resetGame);
 
 // ==================== Function to reveal two chosen cards and handle the game logic ========
 function reveal2chosenCard(card) {
@@ -198,7 +215,7 @@ function reveal2chosenCard(card) {
         if (twoMatchedCards === cardNumbers) {
           // statement if the card twomatched card equal to my card number mean my array lenght
           clearInterval(timerInterval); //mean we matched all the card and game is over
-          showPromptScreen(); //show the prompt screen if we want to exit or not
+          // showPromptScreen(); //show the prompt screen if we want to exit or not
         }
       } else {
         errorCount += 1; // increment the errors
@@ -215,21 +232,12 @@ function reveal2chosenCard(card) {
   }
 }
 
-//======== the restart Button fonctionality =============
-const restartButton = document.getElementById("restartButton"); //create an eventListner for my restart button
-restartButton.addEventListener("click", resetGame);
-
-// ====================== Initial game setup ==================
-shuffleAndCreateGrid(MyCards);
-hideCards(); // Hide the cards when the game starts
-updateScoreDisplay(); //will update the score to zero
-updateErrorCount(); //update the errors to zero
-
 // ====================== function for my score ============================
 function updateScoreDisplay() {
   // function that update the score each time two cards matched
   const scoreDisplay = document.getElementById("score"); //access the score display using get elementById
   scoreDisplay.textContent = `Score: ${score}`; // show the score updated each time on my screen
+  // console.log(updateScoreDisplay)
 }
 
 // =========== function to count the number of error after 2 click not matched  ==================
@@ -237,128 +245,109 @@ function updateErrorCount() {
   // once we click twice and cards doesn't match is one error
   const errorCountScreen = document.getElementById("errorCount"); //get the error usin get Element ById
   errorCountScreen.textContent = `Errors: ${errorCount}`; //Display the error countion on my screen using textcentent
+  // console.log(updateErrorCount)
 }
 
 // ========= function for player turn ================
 function playerTurn() {
-  //function to switch between two players
-  const player1 = document.getElementById("player1"); //access the player 1
-  const player2 = document.getElementById("player2"); //access the player 2
+  //function that update a chosen player on my score board
+  const player1On = document.getElementById("player1"); // access to my player on html using element by id
+  const player2On = document.getElementById("player2");
 
   if (currentPlayer === 1) {
-    //statement if the is 1 mean show player 1 and hide player 2
-    player1.style.display = "block"; //display player 1
-    player2.style.display = "none"; //hide player 2
+    // statement if the player 1 is playing show game board for player 1 and hide for player 2
+    player1On.style.display = "block";
+    player2On.style.display = "none";
   } else {
-    player1.style.display = "none"; // hide player 1
-    player2.style.display = "block"; // display player 2
+    // otherwise show the game board for player 2 and hide player 1
+    player1On.style.display = "none";
+    player2On.style.display = "block";
   }
 }
 
 //========= add buttons for player 1 and player 2 ===========
-const player1Button = document.getElementById("player1Button"); // access to button for player 1
-const player2Button = document.getElementById("player2Button"); // access to button for player 2
+const player1Button = document.getElementById("player1Button"); // access in my html to player 1 button
+const player2Button = document.getElementById("player2Button"); // access in my html to player 2 button
 
 player1Button.addEventListener("click", () => {
-  //add an eventListner click for player 1
-  currentPlayer = 1; //the current player is 1
-
-  players[2].time = seconds; //switch time when we switch player with Dylan help
-  seconds = players[1].time;
-  playerTurn(); //invoke function player turn to call the player1
-});
-
-player2Button.addEventListener("click", () => {
-  //add an eventListner when we click player 2 button
+  // add an eventlistner for player 1 button when we click it will switch to player 1
   currentPlayer = 2;
-  players[1].time = seconds; //switch time to player 1 to keep tracking time
-  seconds = players[2].time;
-  playerTurn(); // invoke function to call player 2
+  playerTurn();
+});
+player2Button.addEventListener("click", () => {
+  // add eventlistner for player 2 button when we click in player 2 button
+  currentPlayer = 1;
+  playerTurn();
 });
 
 // ===== function to update each player's game data and display =====
 function updatePlayerData(playerNumber) {
-  const currentPlayerData = players[playerNumber];
+  //displayer the score, errors, and time updated on my screen board info
+  const currentPlayerData = players[playerNumber]; // access to our player object
   const playerScoreElement = document.getElementById(
+    // access to score for selected player
     `player${playerNumber}Score`
   );
   const playerErrorsElement = document.getElementById(
+    // access to errors for selected player
     `player${playerNumber}Errors`
   );
   const playerTimeElement = document.getElementById(
+    // access to time for selected player
     `player${playerNumber}Time`
   );
 
-  playerScoreElement.textContent = `Score: ${currentPlayerData.score}`;
-  playerErrorsElement.textContent = `Errors: ${currentPlayerData.errors}`;
-  playerTimeElement.textContent = `Time: ${currentPlayerData.time}s`;
+  playerScoreElement.textContent = `Score: ${currentPlayerData.score}`; // show the updated score each time
+  playerErrorsElement.textContent = `Errors: ${currentPlayerData.errors}`; // show the updated errors each time
+  playerTimeElement.textContent = `Time: ${currentPlayerData.time}s`; // show the updated time each time
 }
 
 //===== function  update each player Game Data ============
+
 function updateGameData() {
   const currentPlayerData = players[currentPlayer];
+
   currentPlayerData.score = score;
+
   currentPlayerData.errors = errorCount;
-  currentPlayerData.time = parseInt(cardTimer.textContent); //I have it from Internet
+
+  currentPlayerData.time = parseInt(cardTimer.textContent);
 }
 
 //============= function to switch players ===========
+
 function switchPlayer() {
   // Update the game data for the current player
+
   updateGameData();
 
   // Switch to the other player (1 -> 2 or 2 -> 1)
-  currentPlayer = 3 - currentPlayer; // Switches between 1 and 2
+
+  currentPlayer = currentPlayer === 1 ? 2 : 1;
+
   playerTurn();
 
   // Update the display with the new player's data
+
   const currentPlayerData = players[currentPlayer];
+
   score = currentPlayerData.score;
+
   errorCount = currentPlayerData.errors;
-  cardTimer.textContent = currentPlayerData.time;
+
+  if (currentPlayer === 1) {
+    currentPlayerData.time = player1ElapsedTime;
+  } else {
+    currentPlayerData.time = player2ElapsedTime;
+  }
+
   updateScoreDisplay();
+
   updateErrorCount();
 }
 
+// Add event listeners to the player switch buttons
 
+player1Button.addEventListener("click", switchPlayer);
 
-//============== function for promptScreen======================
-function showPromptScreen() {
-  document.getElementById("exitScreen").style.display = "block";
-  document.getElementById("PromptScreen").style.display = "block";
-
-  const finaltime = cardTimer.textContent;
-  const finalscore = players[currentPlayer].score;
-  const finalerrors = players[currentPlayer].errors;
-
-  document.getElementById("FinalScore").textContent = finalscore;
-  document.getElementById("FinalTime").textContent = finaltime;
-  document.getElementById("FinalErrors").textContent = finalerrors;
-
-  document.getElementById("confirmYesButton").addEventListener("click", exitGame);
-  document.getElementById("confirmNoButton").addEventListener("click", resetGame);
-}
-
-function exitGame(){
-  window.close()
-}
-
-
-// =========== function PlayerWinner ======== checking who is a winner between to players 
-function playerWinner() {
-  const player1Score = players[1].score;
-  const player2Score = players[2].score;
-
-  if (twoMatchedCards === cardNumbers) {
-    if (player1Score > player2Score) {
-      console.log("Player 1 wins");
-      alert("Player 1 wins");
-    } else if (player1Score < player2Score) {
-      console.log("Player 2 wins");
-      alert("Player 2 wins");
-    } else {
-      console.log("It's a tie");
-      resetGame();
-    }
-  }
-}
+player2Button.addEventListener("click", switchPlayer);
