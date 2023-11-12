@@ -39,9 +39,6 @@ body {
     /* background-color: #58d6ef; Card back background color */
   }
   
-  /* .card-front {
-    transform: rotateY(0deg);
-  } */
   
   .card-back {
     transform: rotateY(180deg);
@@ -74,7 +71,8 @@ body {
 
   .buttons1 {
     align-items: center;
-    background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+    background-image: linear-gradient(144deg, #9aca65, #cee3a0 50%, 
+    #d2e3a5);
     border: 0;
     border-radius: 8px;
     box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
@@ -98,7 +96,7 @@ body {
 
 .buttons2 {
     align-items: center;
-    background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+    background-image: linear-gradient(144deg, #f6a818, #fdc413 50%, #fee191);
     border: 0;
     border-radius: 8px;
     box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
@@ -174,11 +172,19 @@ body {
     font-family: Verdana;
 }
 
-.players-info{
+#player1{
     color: #ffbf35;
     font-size: 20px;
     font-weight: bold;
     font-family: Georgia;
+
+}
+
+#player2{
+  color: #5B42F3;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: Georgia;
 
 }
 
