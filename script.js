@@ -213,6 +213,7 @@ function reveal2chosenCard(card) {
         updateScoreDisplay(); // Update the score display on the page
 
         if (twoMatchedCards === cardNumbers) {
+          endGame()
           // statement if the card twomatched card equal to my card number mean my array lenght
           clearInterval(timerInterval); //mean we matched all the card and game is over
           // showPromptScreen(); //show the prompt screen if we want to exit or not
@@ -302,15 +303,11 @@ function updatePlayerData(playerNumber) {
   playerTimeElement.textContent = `Time: ${currentPlayerData.time}s`; // show the updated time each time
 }
 
-//===== function  update each player Game Data ============
-
+//==================== function  update each player Game Data =================
 function updateGameData() {
   const currentPlayerData = players[currentPlayer];
-
   currentPlayerData.score = score;
-
   currentPlayerData.errors = errorCount;
-
   currentPlayerData.time = parseInt(cardTimer.textContent);
 }
 
@@ -318,31 +315,20 @@ function updateGameData() {
 
 function switchPlayer() {
   // Update the game data for the current player
-
   updateGameData();
-
   // Switch to the other player (1 -> 2 or 2 -> 1)
-
   currentPlayer = currentPlayer === 1 ? 2 : 1;
-
   playerTurn();
-
   // Update the display with the new player's data
-
   const currentPlayerData = players[currentPlayer];
-
   score = currentPlayerData.score;
-
   errorCount = currentPlayerData.errors;
-
   if (currentPlayer === 1) {
     currentPlayerData.time = player1ElapsedTime;
   } else {
     currentPlayerData.time = player2ElapsedTime;
   }
-
   updateScoreDisplay();
-
   updateErrorCount();
 }
 
@@ -351,3 +337,35 @@ function switchPlayer() {
 player1Button.addEventListener("click", switchPlayer);
 
 player2Button.addEventListener("click", switchPlayer);
+
+function determineWinner() {
+  if (players[1].score > players[2].score) {
+    return 1; // Player 1 wins
+  } else if (players[2].score > players[1].score) {
+    return 2; // Player 2 wins
+  } else {
+    // Scores are tied, compare errors
+    if (players[1].errors < players[2].errors) {
+      return 1; // Player 1 wins based on fewer errors
+    } else if (players[2].errors < players[1].errors) {
+      return 2; // Player 2 wins based on fewer errors
+    } else {
+      return 0; // It's a tie, no clear winner
+    }
+  }
+}
+
+function endGame() {
+  clearInterval(timerInterval);
+
+  // Determine the winner
+  const winner = determineWinner();
+
+  if (winner === 1) {
+    alert("Player 1 is the winner!");
+  } else if (winner === 2) {
+    alert("Player 2 is the winner!");
+  } else {
+    alert("It's a tie!");
+  }
+}
