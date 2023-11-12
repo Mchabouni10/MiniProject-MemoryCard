@@ -188,22 +188,38 @@ body {
 
 }
 
-#score{
-    color: #01ba48;
-    font-size: 20px;
+#player1Score{
+    color: #ffbf35;
     font-weight: bold;
+    font-size: 16px;
     font-family: Georgia;
 }
 
-#errorCount{
-    color: #bb52fd;
-    font-size: 20px;
+#player2Score{
+  color: #5B42F3;
+  font-weight: bold;
+  font-size: 16px;
+  font-family: Georgia;
+}
+
+#player1Errors{
+    color:  #ffbf35;
     font-weight: bold;
+    font-size: 16px;
     font-family: Georgia;
 }
+
+#player2Errors{
+  color:  #5B42F3;
+  font-weight: bold;
+  font-size: 16px;
+  font-family: Georgia;
+}
+
+
 #secondTimer{
     color: #d61f23;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     font-family: Georgia;
 }
