@@ -316,7 +316,8 @@ player1Button.addEventListener("click", () => {
     player2Info.style.display = "block";
     updatePlayer1Score();
     updatePlayer1Errors();
-    // document.getElementById("player1Time").textContent = `Player 1 Time: ${player1ElapsedTime}s`;
+    document.getElementById("player1Time").textContent = `Player 1 Time: ${player1ElapsedTime}s`;
+    // Optionally, you can update the UI for Player 2 here as well, even though it's not necessary for the current player's turn.
   }
 });
 
