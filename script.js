@@ -365,4 +365,7 @@ function endGame() {
   } else { // function winner player return 0 there is no winner 
     alert("It's a tie!");
   }
+  setTimeout(() => {
+    window.location.reload(); // refresh the page
+  }, 1000)
 }
