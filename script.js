@@ -126,7 +126,11 @@ let player2Score = 0 ; //set the score for player 2
 let player1Error = 0 ; //set the errors for player 1
 let player2Error = 0 ; //set the errors for player 2
 
-// Function to start the game timer
+
+
+
+
+// ================== Function to start the game timer =============================================
 function startGameTimer() { 
   timerInterval = setInterval(() => {
     // use setIntervale that count by 1 second incrementation
@@ -225,7 +229,7 @@ restartButton.addEventListener("click", resetGame);
 
 
 
-// ==================== Function to reveal two chosen cards and handle the game logic ========
+// ==================== Function to reveal two chosen cards and handle the game logic ==================
 function reveal2chosenCard(card) {
   //the longest logic to work on it. the name of the function
   if (waitForMove === 0) {
@@ -300,7 +304,7 @@ function reveal2chosenCard(card) {
 
 
 
-// ============ function switch players 
+// ==================== function switch players  ==================================================
 function switchPlayer() { // create function switch to switch player between player 1 and player 2 when we click in buttons 
   currentPlayer = currentPlayer === 1 ? 2 : 1; //switches the current player and keep trucking the data for each player 
 }

@@ -1,15 +1,46 @@
-this game about the memory game for kids, the objective of the game is to find two matching cards on my grid of 16 cards. each time two match card find out and tuned over will be removed from the grid.
-the game is set for two player, player 1 and player 2, each player has score errors and elpase time. the player who score more will win the game. otherwise if is tie check the fewer error for each player. the player with fewer errors will win. 
+Introduction
+It is a classic memory card game implemented in HTML, CSS and JavaScript. The game is designed to test your memory and concentration. It consists of a grid of face-up cards and aims to match pairs of cards that have the same face.
 
-the game start by shuffling the card usin shuffle function to change the positions of the cards each time. also turn face down of the cards. 
+characteristics
+Map grid with hidden images. The game can be played by two players in turn. Score for each player. Number of fouls by each player. Timers for each player and turn. Restart button to reset the game. Determine the winner if all cards are suited or tied.
 
-creating scoring errors and timelapse for each player 
-creating function that count the time for each player when he makes first move
-creating intial state by using restard button by deleting all previous data
-option to switch between my 2 players an anytime
-determine the game winner by scoring point first and fewer errors second
-the game start with player 1 each player take turn and by clicking two reaveled cards if they are not matched they will be face turned down again or if they matched just remove them from the grid, the game will keep playing until all the card are matched. once there is function that compare score for the winner 
-and dipslay it as an alert 
+Game Rules
+The game is played with a deck of cards, where each card has a matching pair.
+The goal is to match all the pairs of cards.
+Players take turns revealing two cards at a time.
+If the two revealed cards have the same image, they are considered a match and are removed from the grid.
+If the two revealed cards do not match, they are turned face down again.
+Players earn points for each successful match.
+The player with the most points wins the game.
+In case of a tie in points, the player with fewer errors wins.
+
+How to Play
+Start the game by clicking on a card. The timer will begin as soon as the first card is revealed.
+Click on a second card to reveal its image.
+If the two revealed cards have the same image, they are considered a match and are removed from the grid. You earn 2 points.
+If the two revealed cards do not match, they are turned face down again, and an error is counted.
+Players take turns until all the cards are matched.
+The player with the most points wins. In case of a tie in points, the player with fewer errors wins.
+You can click the "Restart" button to reset the game at any time.
+Installation
+Clone the repository to your local machine:
+
+technologies
+javaScript
+HTML
+CSS
+
+Usage
+Open the index.html file in a web browser.
+The game grid will be displayed, and you can start playing.
+Follow the How to Play instructions to enjoy the game.
+Use the "Restart" button to reset the game.
+
+Source
+w3 school
+Dylan help
+Me
+
 
 
 
