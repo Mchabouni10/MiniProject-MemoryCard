@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../gameshipproject"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "gameshipproject"
+	}
+}
