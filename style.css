@@ -448,7 +448,6 @@ font-size: 11px;
   max-width: 100%;
   min-width: 100px;
   padding: 14px 18px;
-  margin: 4%;
 
 }
 
@@ -463,8 +462,8 @@ font-size: 11px;
 }
 
 .Allbuttons {
-  margin-bottom: 2%;
-  margin-right: 10%;
+  justify-content: center;
+  align-items: center;
 }
 
 #secondTimer{
