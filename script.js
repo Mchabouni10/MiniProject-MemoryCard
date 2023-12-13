@@ -151,21 +151,21 @@ function startGameTimer() {
 //============ function to update score for player 1 ============================
 function updatePlayer1Score() { 
   players[1].score = player1Score; // Update the score for Player 1
-  document.getElementById("player1Score").textContent = `Player 1 Score: ${players[1].score}`;
+  document.getElementById("player1Score").textContent = `Score: ${players[1].score}`;
 }
 
 
 //=========== function to update  score for player 2 ================================
 function updatePlayer2Score() {
   players[2].score = player2Score; // Update the score for Player 2
-  document.getElementById("player2Score").textContent = `Player 2 Score: ${players[2].score}`;
+  document.getElementById("player2Score").textContent = `Score: ${players[2].score}`;
 }
 
 
 //=========== function to update errors for player 1 ==================================
 function updatePlayer1Errors() {
   players[1].errors = player1Error; // Update the error count for Player 1
-  document.getElementById("player1Errors").textContent = `Player 1 Errors: ${players[1].errors}`;
+  document.getElementById("player1Errors").textContent = `Errors: ${players[1].errors}`;
 }
 
 
@@ -173,7 +173,7 @@ function updatePlayer1Errors() {
 //========== function to update errors for player 2 =====================================
 function updatePlayer2Errors() {
   players[2].errors = player2Error; // Update the error count for Player 2
-  document.getElementById("player2Errors").textContent = `Player 2 Errors: ${players[2].errors}`;
+  document.getElementById("player2Errors").textContent = `Errors: ${players[2].errors}`;
 }
 
 
@@ -316,7 +316,7 @@ player1Button.addEventListener("click", () => {
   if (currentPlayer === 1) { // statement for the current player 
     switchPlayer(); // invoke switch to switch a player
     
-    player1Info.style.display = "none";
+    player1Info.style.display = "block";
     player2Info.style.display = "block";
     updatePlayer1Score();
     updatePlayer1Errors();
@@ -330,7 +330,7 @@ player2Button.addEventListener("click", () => {
     switchPlayer();
     
     player1Info.style.display = "block";
-    player2Info.style.display = "none";
+    player2Info.style.display = "block";
     updatePlayer2Score();
     updatePlayer2Errors();
     // document.getElementById("player2Time").textContent = `Player 2 Time: ${player2ElapsedTime}s`;
@@ -361,15 +361,47 @@ function playerWinner() {
 
 // =========== function end of the game to link it when all card are revealed or matched 
 function endGame() {
-  const winner = playerWinner(); 
-  if (winner === 1) { // statement if function winner player retrun 1 mean player is a winner 
-    alert("Player 1 is the winner!"); // get an alert that player 1 is a winner 
-  } else if (winner === 2) { // statement if function player winner return 2 mean player 2 is a winner 
-    alert("Player 2 is the winner!"); // get an alert that player 2 is winner 
-  } else { // function winner player return 0 there is no winner 
-    alert("It's a tie!");
+  const winner = playerWinner();
+  displayWinnerMessage(winner);
+  openModal();
+  clearInterval(timerInterval);
+}
+
+
+
+
+
+
+
+
+function openModal() {
+  document.getElementById('endGameModal').style.display = 'block';
+}
+
+function closeModal() {
+  document.getElementById('endGameModal').style.display = 'none';
+}
+
+function displayWinnerMessage(winner) {
+  const messageElement = document.getElementById('winnerMessage');
+  if (winner === 1) {
+      messageElement.textContent = 'Player 1 is the winner!';
+  } else if (winner === 2) {
+      messageElement.textContent = 'Player 2 is the winner!';
+  } else {
+      messageElement.textContent = 'It\'s a tie!';
   }
-  setTimeout(() => {
-    window.location.reload(); // refresh the page
-  }, 1000)
+}
+
+function replayGame() {
+  window.location.reload();
+}
+
+function exitGame() {
+  // Attempt to close the window
+  window.close();
+
+  // If window.close() is blocked or not supported, show an alternative message
+  alert('Exiting the game...');
+
 }

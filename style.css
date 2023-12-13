@@ -2,11 +2,12 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     background-image:url(images/background.png);
-    background-size: 100% 100%; 
-    background-repeat: no-repeat;
+    background-size: cover; 
+    background-repeat: repeat-y;
     background-position: center;
     height: 100vh;
-    margin-bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
     padding: 0;
   }
   
@@ -14,13 +15,17 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    height: auto;
+    margin-top: 2%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 2%;
   }
   
   .card {
-    width: 110px;
-    height: 140px;
+    width: 90px;
+    height: 120px;
     margin: 10px;
-    perspective: 800px;
     cursor: pointer;
     position: relative;
     transform-style: preserve-3d;
@@ -35,8 +40,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
-    /* background-color: #58d6ef; Card back background color */
   }
   
   
@@ -142,8 +145,6 @@ body {
 }
 
 .Allbuttons {
-    margin-top: 1%;
-    margin-bottom: 1%;
     display: flex;
     justify-content:space-between; 
     margin-left: 15%;
@@ -152,67 +153,76 @@ body {
 
 .scoringInfo{
     background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    margin-left: 40%;
-    margin-right: 40%;
+    margin-left: 35%;
+    margin-right: 35%;
     border-radius: 2%;
+    min-height: 18%;
     border : solid #00DDEB 4px;
     text-align: center;
     margin-top: 1%;
+    padding: 1%;
+}
+
+
+.Name-timer{
+  display: flex;
+  flex-direction: column;
 }
 
 .gamename{
     color: #f42c7d;
-    font-size: 30px;
+    font-size: 26px;
     text-shadow: 4px 4px 6px #901f68;
     font-weight: bold;
     white-space: wrap;
-    font-style: oblique;
-    font-family: Verdana;
 }
 
 #player1{
     color: #ffbf35;
     font-size: 20px;
+     margin-bottom: 9%;
     font-weight: bold;
-    font-family: Georgia;
+    text-align: left;
 
 }
 
 #player2{
   color: #5B42F3;
   font-size: 20px;
+  margin-bottom: 9%;
   font-weight: bold;
-  font-family: Georgia;
-
+  text-align: left;
 }
 
 #player1Score{
     color: #ffbf35;
     font-weight: bold;
     font-size: 16px;
-    font-family: Georgia;
+    text-align: left;
 }
 
 #player2Score{
   color: #5B42F3;
   font-weight: bold;
   font-size: 16px;
-  font-family: Georgia;
+  text-align: left;
 }
 
 #player1Errors{
     color:  #ffbf35;
     font-weight: bold;
     font-size: 16px;
-    font-family: Georgia;
+    text-align: left;
 }
 
 #player2Errors{
   color:  #5B42F3;
   font-weight: bold;
   font-size: 16px;
-  font-family: Georgia;
+  text-align: left;
 }
 
 
@@ -220,7 +230,245 @@ body {
     color: #d61f23;
     font-size: 18px;
     font-weight: bold;
-    font-family: Georgia;
+    margin-top: 10%;
 }
 
+/*================= the exist screen =============*/
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  position: absolute;
+  /* display: flex; */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 40px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#winnerMessage{
+ color: #d61f23;
+ font-weight: bold;
+ font-size: 14px;
+}
+
+.ButtonsExistReplay{
+  display: flex;
+  margin: 5%;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  background-image: linear-gradient(144deg, #b73d83, #f02b7e 50%, #f396c8);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  display: flex;
+  font-family: Phantomsans, sans-serif;
+  font-size: 15px;
+  justify-content: center;
+  line-height: 1em;
+  max-width: 100%;
+  min-width: 70px;
+  padding: 10px 16px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
+  margin: 3%;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 768px) {
+  .myScreen {
+      margin-left: 5%;
+      margin-right: 5%;
+  }
+
+
+  .scoringInfo {
+    padding: .2%;
+    margin-left: 25%;
+    margin-right: 25%;
+    min-height: 17%;
+   
+}
+
+.gamename{
+  font-size: 20px;
+}
+
+#player1{
+  font-size: 17px;
+  margin-bottom: 4%;
+}
+
+#player2{
+font-size: 17px;
+margin-bottom: 4%;
+}
+
+#player1Score{
+  font-size: 13px;
+}
+
+#player2Score{
+font-size: 13px;
+}
+
+#player1Errors{
+  font-size: 13px;
+}
+
+#player2Errors{
+font-size: 13px;
+}
+
+  
+  .buttons1,
+  .buttons2,
+  .buttons3 {
+    font-size: 15px;
+    justify-content: center;
+    max-width: 100%;
+    min-width: 100px;
+    padding: 14px 18px;
+    margin: 4%;
+
+  }
+
+
+  .card {
+    width: 75px;
+    height: 100px;
+    margin: 10px;
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+  }
+
+  .Allbuttons {
+    margin-bottom: 2%;
+  }
+ 
+}
+
+
+
+
+
+
+
+
+
+
+/* Media query for phones */
+@media only screen and (max-width: 502px) {
+
+
+
+.scoringInfo {
+  padding: .5%;
+  margin-left: 25%;
+  margin-right: 25%;
+  min-height: 13%;
+ 
+}
+
+.gamename{
+font-size: 14px;
+}
+
+#player1{
+font-size: 13px;
+margin-bottom: 4%;
+}
+
+#player2{
+font-size: 13px;
+margin-bottom: 4%;
+}
+
+#player1Score{
+font-size: 11px;
+}
+
+#player2Score{
+font-size: 11px;
+}
+
+#player1Errors{
+font-size: 11px;
+}
+
+#player2Errors{
+font-size: 11px;
+}
+
+
+.buttons1,
+.buttons2,
+.buttons3 {
+  font-size: 15px;
+  justify-content: center;
+  max-width: 100%;
+  min-width: 100px;
+  padding: 14px 18px;
+  margin: 4%;
+
+}
+
+
+.card {
+  width: 65px;
+  height: 90px;
+  margin: 5px;
+  cursor: pointer;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.Allbuttons {
+  margin-bottom: 2%;
+}
+
+#secondTimer{
+  font-size: 12px;
+}
+
+}
 
